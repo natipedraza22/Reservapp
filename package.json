@@ -1,0 +1,17 @@
+{
+  "name": "reservapp",
+  "version": "1.0.0",
+  "description": "https://mggp.pythonanywhere.com/",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "12.17.2" 
+  }
+}
+
+

@@ -20,9 +20,8 @@ ReservApp es una aplicación web desarrollada para simplificar la gestión de re
 
 1. Se clona el repositorio : `git clone https://github.com/natipedraza22/reservapp.git`.
 2. Asegurarse tener instalado Node.js y NPM.
-3. Ejecución `npm install` para instalar las dependencias del proyecto.
-4. Configurar el entorno de desarrollo y la base de datos según las instrucciones proporcionadas en `config.js`.
-5. Ejecutar `npm start` para iniciar el servidor de desarrollo.
+3. Ejecución `npm ci` para instalar las dependencias del proyecto.
+4. Ejecutar `npm start` para iniciar Cypress.
 
 ## Testing Automatizado
 
