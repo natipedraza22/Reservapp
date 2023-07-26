@@ -4,19 +4,9 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
   });
   
   
-  it("TC1: Validar que el botón para crear reserva contenga las opciones correctas", () => {
 
-    cy.contains("button", "Nueva reserva").click(); //Hacer click en el botón de creación de reserva.
 
-    cy.get(".container-lg.bg-light.mt-5.pt-3").contains("Entrada").should("be.visible");// Validar que la opcion de fecha de entrada esté presente.
-
-    cy.get(".container-lg.bg-light.mt-5.pt-3").contains("Salida").should("be.visible");// Validar que la opcion de fecha de salida esté presente.
-
-    cy.get(".container-lg.bg-light.mt-5.pt-3 input[name='guest_count']").should("exist").should("be.visible");// Validar que la opcion de número de huéspedes esté presente.
-
-  });
-
-  it.only("TC2: Validar que al buscar entre 2 fechas se muestre la información correcta.", () => {
+  it.only("TC01: Validar que el sistema permita la creación de reserva con las opciones correctas.", () => {
    
     
     cy.get("input[name='start_date']").type("1989-07-22"); // Introducir fechas de entrada.
@@ -37,6 +27,56 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
     
     cy.get(".text-end").eq(1).should("be.visible");// Validar que haya un boton para seleccionar la habitación.
   });
+
+
+  it("TC02: Validar que el sistema no permita crear reserva dentro de la restricción de fechas.", () => {
+
+   
+
+  });
+
+
+  it("TC03: Validar que el sistema muestre el tipo de habitaciones disponibles de acuerdo al número de huéspedes.", () => {
+
+   
+
+  });
+
+
+  it("TC05: Validar que el sistema muestre los precios correctos de cada reserva.", () => {
+
+   
+
+  });
+
+
+  it("TC06: Validar la actualización del número de habitaciones disponibles por fecha.", () => {
+
+   
+
+  });
+
+
+  it("TC07: Validar formulario ingresando datos correctos.", () => {
+
+   
+
+  });
+
+
+  it("TC08: Validar formulario con campos obligatorios vacíos.", () => {
+
+   
+
+  });
+
+
+  it.skip("TC09: Validar formulario con tipo de datos inválidos.", () => {
+
+   
+
+  });
+
  
 });
 
