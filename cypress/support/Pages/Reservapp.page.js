@@ -1,20 +1,20 @@
 class reservapp{
 	get={
-		nuevaRecerva:()=> cy.get('button[class$="primary"]'),
-		listaRecerva:()=>cy.get('tbody tr'), // Esta lista contiene un total de 44 filas
+		nuevaReserva:()=> cy.get('button[class$="primary"]'),
+		listaReserva:()=>cy.get('tbody tr'), // Esta lista contiene un total de 44 filas
 		//room types
 		buscarDisponibilidad:()=>cy.get('[class$="justify-content-between"] [class*="content-start"] button'),
 		inputPasajeros:()=>cy.get('[class$="justify-content-between"] input').first(),
 		inputFechaEntrada:()=>cy.get('[class$="justify-content-between"] input').eq(1),
 		inputFechaSalida:()=>cy.get('[class$="justify-content-between"] input').last(),
 		tablaDisponibilidad:()=>cy.get('tbody tr'), // Deberá de tener una length igual o mayor a la cantidad de pasajeros
-		botonRecerva:()=>cy.get('tbody tr [class="text-end"] span'), // Deberá de tener una length igual o mayor a la cantidad de pasajeros
+		botonReserva:()=>cy.get('tbody tr [class="text-end"] span'), // Deberá de tener una length igual o mayor a la cantidad de pasajeros
 		tipoHabitacion:()=>cy.get('tbody tr [class="text-start"]'),// Deberá de tener una length igual o mayor a la cantidad de pasajeros
 		// capacidad:()=>cy.get('tbody tr [class="text-center"]'),
 		cantidadDisponible:()=>cy.get('tbody tr [class="text-center"]'),
 		precioVenta:()=>cy.get('tbody tr [class="text-center"]'),
 		
-		//creación de recerva
+		//creación de reserva
 		fechaEntrada:()=>cy.get('[name="start_date"]'),
 		fechaSalida:()=>cy.get('[name="end_date"]'),
 		pasajeros:()=>cy.get('[name="guest_count"]'),
@@ -26,11 +26,11 @@ class reservapp{
 
 		telefono:()=>cy.get('[name="contact_info_2"]'),
 		precio:()=>cy.get('input[type="text"]').last(),
-		btnCrearRecerva:()=>cy.get('button[type="submit"]'),
+		btnCrearReserva:()=>cy.get('button[type="submit"]'),
 		paginaError:()=>cy.get('body'),
 	}
-	consultarNuevaRecerva(){
-		this.get.nuevaRecerva().click();
+	consultarNuevaReserva(){
+		this.get.nuevaReserva().click();
 	}
 	agregarPasajeros(pasajeros){
 		pasajeros && this.get.inputPasajeros().type(pasajeros);
@@ -45,8 +45,8 @@ class reservapp{
 	clickBtnBuscarDisponibilidad(){
 		this.get.buscarDisponibilidad().click();
 	}
-	clickBotonRecerva(){
-		this.get.botonRecerva().first().click();
+	clickBotonReserva(){
+		this.get.botonReserva().first().click();
 	}
 	validarHabitacionesDisponibles(pasajeros) {
 		let habitacionesDisponibles = [];
@@ -81,7 +81,7 @@ class reservapp{
 	}
 
 	botonCrearReserva(){
-		this.get.btnCrearRecerva().click()
+		this.get.btnCrearReserva().click()
 	}
 
 	
