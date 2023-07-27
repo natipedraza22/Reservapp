@@ -28,6 +28,8 @@ class reservapp{
 		precio:()=>cy.get('input[type="text"]').last(),
 		btnCrearReserva:()=>cy.get('button[type="submit"]'),
 		paginaError:()=>cy.get('body'),
+		reservaError:()=>cy.get('body'),
+
 	}
 	consultarNuevaReserva(){
 		this.get.nuevaReserva().click();
@@ -83,7 +85,8 @@ class reservapp{
 	botonCrearReserva(){
 		this.get.btnCrearReserva().click()
 	}
-
+    
+	
 	
 }
 export const Reservapp = new reservapp();

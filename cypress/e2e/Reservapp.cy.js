@@ -11,28 +11,48 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
   });
 
 
-  it('TC01: validar que el sistema permita la búsqueda de disponibilidad ingresando datos correctos.', () => {
+  it('TC01: Validar el ingreso de datos correctos para la creación de la reserva.', () => {
     
-	Reservapp.consultarNuevaReserva();
-	Reservapp.agregarPasajeros(pasajeros);
-	Reservapp.get.inputPasajeros().should('have.value', pasajeros);
-	Reservapp.agregarFechaEntrada(data.fechaEntrada);
-	Reservapp.get.inputFechaEntrada().should('have.value', data.fechaEntrada);
-	Reservapp.agregarFechaSalida(data.fechaSalida);
-	Reservapp.get.inputFechaSalida().should('have.value', data.fechaSalida);
-	Reservapp.clickBtnBuscarDisponibilidad();
-	cy.url().should('contain', data.urlDisponibilidad );
-	Reservapp.get.botonReserva().its('length').then((boton)=>{
-		expect(boton).to.be.greaterThan(0);
-	})
-	Reservapp.clickBotonReserva();
-	cy.url().should('contain', data.urlReserva);
-	Reservapp.get.fechaEntrada().should('have.value', data.fechaEntrada);
-	Reservapp.get.fechaSalida().should('have.value', data.fechaSalida);
+	  Reservapp.consultarNuevaReserva();
+	  Reservapp.agregarPasajeros(pasajeros);
+	  Reservapp.get.inputPasajeros().should('have.value', pasajeros);
+	  Reservapp.agregarFechaEntrada(data.fechaEntrada);
+	  Reservapp.get.inputFechaEntrada().should('have.value', data.fechaEntrada);
+	  Reservapp.agregarFechaSalida(data.fechaSalida);
+	  Reservapp.get.inputFechaSalida().should('have.value', data.fechaSalida);
+	  Reservapp.clickBtnBuscarDisponibilidad();
+	  cy.url().should('contain', data.urlDisponibilidad );
+	  Reservapp.get.botonReserva().its('length').then((boton)=>{
+		  expect(boton).to.be.greaterThan(0);
+	  })
+	  Reservapp.clickBotonReserva();
+	  cy.url().should('contain', data.urlReserva);
+	  Reservapp.get.fechaEntrada().should('have.value', data.fechaEntrada);
+	  Reservapp.get.fechaSalida().should('have.value', data.fechaSalida);
 
+  });
+
+  it('TC02: Validar el ingreso de datos incorrectos para la creación de la reserva.', () => {
+    
+    Reservapp.consultarNuevaReserva();
+	  Reservapp.agregarPasajeros(pasajeros);
+	  Reservapp.get.inputPasajeros().should('have.value', pasajeros);
+	  Reservapp.agregarFechaEntrada(data.fechaIncorrectaReserva);
+	  Reservapp.get.inputFechaEntrada().should('have.value', data.fechaIncorrectaReserva);
+	  Reservapp.agregarFechaSalida(data.fechaIncorrectaReservaSalida);
+	  Reservapp.get.inputFechaSalida().should('have.value', data.fechaIncorrectaReservaSalida);
+	  Reservapp.clickBtnBuscarDisponibilidad();
+	  Reservapp.get.botonReserva().its('length').then((boton)=>{
+		expect(boton).to.be.greaterThan(0);
+	  })
+	  Reservapp.clickBotonReserva();
+    Reservapp.get.reservaError().should('contain', data.msgReservaInv);
 });
 
-  it('TC02: Validar que el sistema no permita crear reserva dentro de la restricción de fechas.', () => {
+
+  
+
+  it('TC03: Validar que el sistema no permita crear reserva dentro de la restricción de fechas', () => {
 	  Reservapp.consultarNuevaReserva();
 	  Reservapp.agregarPasajeros(pasajeros);
 	  Reservapp.get.inputPasajeros().should('have.value', pasajeros);
@@ -49,8 +69,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
 
   });
 
-
-  it('TC03: Validar que el sistema muestre el tipo de habitaciones disponibles de acuerdo al número de huéspedes.', () => {
+  it('TC04: Validar que el sistema muestre solo las habitaciones disponibles que se ajusten al número de huéspedes.', () => {
     Reservapp.consultarNuevaReserva();
     Reservapp.agregarPasajeros(pasajeros);
     Reservapp.get.inputPasajeros().should('have.value', pasajeros);
@@ -64,11 +83,13 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
     cy.get('@habitacionesDisponibles').then((habitacionesDisponibles) => {
         expect(habitacionesDisponibles.length).to.equal(5 - pasajeros);
     });
-
+  
   });
 
+  
 
-  it('TC04: Validar que el sistema muestre los precios correctos de cada reserva.', () => {
+
+  it('TC05: Validar los precios correctos por tipo de habitación.', () => {
     const pasajero = 2
     Reservapp.consultarNuevaReserva();
     Reservapp.agregarPasajeros(pasajero);
@@ -89,32 +110,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
   });
 
 
-  it('TC05: Validar la actualización del número de habitaciones disponibles por fecha.', () => {
-    const pasajero = 2
-    Reservapp.consultarNuevaReserva();
-    Reservapp.agregarPasajeros(pasajero);
-    Reservapp.get.inputPasajeros().should('have.value', pasajero);
-    Reservapp.agregarFechaEntrada(data.fechaEntrada);
-    Reservapp.get.inputFechaEntrada().should('have.value', data.fechaEntrada);
-    Reservapp.agregarFechaSalida(data.fechaSalida);
-    Reservapp.get.inputFechaSalida().should('have.value', data.fechaSalida);
-    Reservapp.clickBtnBuscarDisponibilidad();
-    cy.url().should('contain', data.urlDisponibilidad );
-    Reservapp.get.botonReserva().its('length').then((boton)=>{
-      expect(boton).to.be.greaterThan(0);
-    })
-    Reservapp.get.cantidadDisponible().eq(7).invoke('text').then((cantidadHabitaciones)=>{
-    Cypress.env('cantidadHabitaciones',cantidadHabitaciones)
-    cy.log(cantidadHabitaciones)
-    })
-    Reservapp.clickBotonReserva();
-
-  });
-
-
-
-
-  it('TC06: Validar formulario ingresando datos correctos.', () => {
+  it('TC06: Validar el formulario de reserva con datos y funcionalidades correctas.', () => {
     Reservapp.consultarNuevaReserva();
 	  Reservapp.agregarPasajeros(pasajeros);
 	  Reservapp.get.inputPasajeros().should('have.value', pasajeros);
@@ -134,16 +130,39 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
     Reservapp.correoElectronicoForm(data.email);
     Reservapp.telefonoForm(data.telefono);
     Reservapp.botonCrearReserva();
+    cy.get('body').should('contain', 'QQ8YEE9RJG');
+
     
    
   });
 
 
 
+  it('TC08: Validar la actualización del número de habitaciones disponibles al crear una reserva.', () => {
+    const pasajero = 2
+    Reservapp.consultarNuevaReserva();
+    Reservapp.agregarPasajeros(pasajero);
+    Reservapp.get.inputPasajeros().should('have.value', pasajero);
+    Reservapp.agregarFechaEntrada(data.fechaEntrada);
+    Reservapp.get.inputFechaEntrada().should('have.value', data.fechaEntrada);
+    Reservapp.agregarFechaSalida(data.fechaSalida);
+    Reservapp.get.inputFechaSalida().should('have.value', data.fechaSalida);
+    Reservapp.clickBtnBuscarDisponibilidad();
+    cy.url().should('contain', data.urlDisponibilidad );
+    Reservapp.get.botonReserva().its('length').then((boton)=>{
+      expect(boton).to.be.greaterThan(0);
+    })
+    Reservapp.get.cantidadDisponible().eq(7).invoke('text').then((cantidadHabitaciones)=>{
+      Cypress.env('cantidadHabitaciones',cantidadHabitaciones)
+      cy.log(cantidadHabitaciones)
+    })
+    Reservapp.clickBotonReserva();
+
+  });
 
 
-  it.skip('TC07: Validar formulario con tipo de datos inválidos.', () => {
-
+  it.skip('TC07: Validar el formulario de reserva con datos inválidos.', () => {
+      //este TC no pasó las pruebas manuales
    
 
   });
@@ -151,4 +170,21 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
 
  
 });
+
+
+
+
+
+  
+
+
+
+
+ 
+
+
+
+
+
+  
 
