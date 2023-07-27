@@ -4,14 +4,15 @@
   "description": "https://mggp.pythonanywhere.com/",
   "main": "index.js",
   "scripts": {
-    "test": "cypress open"
+    "test": "cypress open",
+    "file": "cypress run"
+
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "12.17.2" 
+    "cypress": "12.17.2",
+    "cypress-mochawesome-reporter": "^3.5.1"
   }
 }
-
-

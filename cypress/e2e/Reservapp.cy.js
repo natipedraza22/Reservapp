@@ -62,30 +62,51 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
 });
 
 
-  it('TC05: Validar que el sistema muestre los precios correctos de cada reserva.', () => {
-    Reservapp.consultarNuevaRecerva();
-	  Reservapp.agregarPasajeros(pasajeros);
-	  Reservapp.get.inputPasajeros().should('have.value', pasajeros);
-	  Reservapp.agregarFechaEntrada(data.fechaEntrada);
-	  Reservapp.get.inputFechaEntrada().should('have.value', data.fechaEntrada);
-	  Reservapp.agregarFechaSalida(data.fechaSalida);
-	  Reservapp.get.inputFechaSalida().should('have.value', data.fechaSalida);
-	  Reservapp.clickBtnBuscarDisponibilidad();
-	  //Reservapp.PrecioCuadruple().
-    
-   
+  
+it('TC05: Validar que el sistema muestre los precios correctos de cada reserva.', () => {
+  const pasajero = 2
+Reservapp.consultarNuevaRecerva();
+Reservapp.agregarPasajeros(pasajero);
+Reservapp.get.inputPasajeros().should('have.value', pasajero);
+Reservapp.agregarFechaEntrada(data.fechaEntrada);
+Reservapp.get.inputFechaEntrada().should('have.value', data.fechaEntrada);
+Reservapp.agregarFechaSalida(data.fechaSalida);
+Reservapp.get.inputFechaSalida().should('have.value', data.fechaSalida);
+Reservapp.clickBtnBuscarDisponibilidad();
+cy.url().should('contain', data.urlDisponibilidad );
+Reservapp.get.botonRecerva().its('length').then((boton)=>{
+  expect(boton).to.be.greaterThan(0);
+})
+Reservapp.get.cantidadDisponible().last().invoke('text').then((precioFinal)=>{
+  expect(precioFinal).to.equal(data.precio)
+})
+});
 
-  });
+it('TC06: Validar la actualización del número de habitaciones disponibles por fecha.', () => {
+const pasajero = 2
+Reservapp.consultarNuevaRecerva();
+Reservapp.agregarPasajeros(pasajero);
+Reservapp.get.inputPasajeros().should('have.value', pasajero);
+Reservapp.agregarFechaEntrada(data.fechaEntrada);
+Reservapp.get.inputFechaEntrada().should('have.value', data.fechaEntrada);
+Reservapp.agregarFechaSalida(data.fechaSalida);
+Reservapp.get.inputFechaSalida().should('have.value', data.fechaSalida);
+Reservapp.clickBtnBuscarDisponibilidad();
+cy.url().should('contain', data.urlDisponibilidad );
+Reservapp.get.botonRecerva().its('length').then((boton)=>{
+  expect(boton).to.be.greaterThan(0);
+})
+Reservapp.get.cantidadDisponible().eq(7).invoke('text').then((cantidadHabitaciones)=>{
+  Cypress.env('cantidadHabitaciones',cantidadHabitaciones)
+  cy.log(cantidadHabitaciones)
+})
+Reservapp.clickBotonRecerva();
+});
 
 
-  it('TC06: Validar la actualización del número de habitaciones disponibles por fecha.', () => {
-
-   
-
-  });
 
 
-  it.only('TC07: Validar formulario ingresando datos correctos.', () => {
+  it('TC07: Validar formulario ingresando datos correctos.', () => {
     Reservapp.consultarNuevaRecerva();
 	  Reservapp.agregarPasajeros(pasajeros);
 	  Reservapp.get.inputPasajeros().should('have.value', pasajeros);
@@ -98,9 +119,14 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
       expect(boton).to.be.greaterThan(0);
     })
     Reservapp.clickBotonRecerva();
+    cy.url().should('contain', data.urlReserva);
     Reservapp.pasajerosForm(pasajeros);
+    Reservapp.get.pasajeros().should('have.value',pasajeros);
     Reservapp.nombreForm(data.nombreForm);
-    Reservapp.correoElectronicoForm(data.email)
+    Reservapp.correoElectronicoForm(data.email);
+    Reservapp.telefonoForm(data.telefono);
+    Reservapp.botonCrearReserva();
+    
     //cy.get('[name="guest_count"]').type('1');
     //cy.get('input[name="contact_info_0"]').type('José').should('have.value', 'José');
     //cy.get('input[name="contact_info_1"]').type('jose@gmail.com').should('have.value', 'jose@gmail.com');
@@ -113,7 +139,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
   });
 
 
-  it('TC08: Validar formulario con campos obligatorios vacíos.', () => {
+  it.skip('TC08: Validar formulario con campos obligatorios vacíos.', () => {
     cy.get('.btn.btn-primary').click();
     cy.get('[type="date"]').eq(0).type('2022-02-22');
     cy.get('[type="date"]').eq(1).type('2022-03-22');

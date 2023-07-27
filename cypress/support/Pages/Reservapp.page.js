@@ -11,7 +11,7 @@ class reservapp{
 		botonRecerva:()=>cy.get('tbody tr [class="text-end"] span'), // Deberá de tener una length igual o mayor a la cantidad de pasajeros
 		tipoHabitacion:()=>cy.get('tbody tr [class="text-start"]'),// Deberá de tener una length igual o mayor a la cantidad de pasajeros
 		// capacidad:()=>cy.get('tbody tr [class="text-center"]'),
-		// cantidadDisponible:()=>cy.get('tbody tr [class="text-center"]'),
+		cantidadDisponible:()=>cy.get('tbody tr [class="text-center"]'),
 		precioVenta:()=>cy.get('tbody tr [class="text-center"]'),
 		
 		//creación de recerva
@@ -73,7 +73,17 @@ class reservapp{
 	}
 
 	correoElectronicoForm(email){
-		this.get.correoElectronico(email);
+		this.get.correoElectronico().type(email);
 	}
+
+	telefonoForm(telefono){
+		this.get.telefono().type(telefono);
+	}
+
+	botonCrearReserva(){
+		this.get.btnCrearRecerva().click()
+	}
+
+	
 }
 export const Reservapp = new reservapp();

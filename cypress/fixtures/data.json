@@ -8,6 +8,8 @@
 	"fechaSalidaInvalida": "2023-02-22",
 	"msgError": "No se pudo calcular el precio para la reserva. La fecha de salida tiene que ser anterior a 2022-12-31",
 	"tiposHabitaciones":["Individual", "Doble", "Triple", "Cuádruple"],
+	"precio":"1550,00",
 	"nombreForm": "José",
-	"email": "jose@gmail.com"
+	"email": "jose@gmail.com",
+	"telefono": "12345"
 }
