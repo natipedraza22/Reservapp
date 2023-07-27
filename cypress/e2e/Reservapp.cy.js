@@ -160,12 +160,11 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
 
   });
 
-
   it.skip('TC07: Validar el formulario de reserva con datos inválidos.', () => {
-      //este TC no pasó las pruebas manuales
-   
+    //En el testeo manual no pasó las pruebas correspondientes
 
   });
+
 
 
  
