@@ -7,7 +7,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
 	cy.viewport(1920,1080);
     cy.visit('/');
 	cy.url().should('contain', data.urlPrincipal);
-  
+
   });
 
 
@@ -68,7 +68,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
   });
 
 
-  it('TC05: Validar que el sistema muestre los precios correctos de cada reserva.', () => {
+  it('TC04: Validar que el sistema muestre los precios correctos de cada reserva.', () => {
     const pasajero = 2
     Reservapp.consultarNuevaReserva();
     Reservapp.agregarPasajeros(pasajero);
@@ -89,7 +89,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
   });
 
 
-  it('TC06: Validar la actualización del número de habitaciones disponibles por fecha.', () => {
+  it('TC05: Validar la actualización del número de habitaciones disponibles por fecha.', () => {
     const pasajero = 2
     Reservapp.consultarNuevaReserva();
     Reservapp.agregarPasajeros(pasajero);
@@ -114,7 +114,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
 
 
 
-  it('TC07: Validar formulario ingresando datos correctos.', () => {
+  it('TC06: Validar formulario ingresando datos correctos.', () => {
     Reservapp.consultarNuevaReserva();
 	  Reservapp.agregarPasajeros(pasajeros);
 	  Reservapp.get.inputPasajeros().should('have.value', pasajeros);
@@ -142,7 +142,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
 
 
 
-  it.skip('TC09: Validar formulario con tipo de datos inválidos.', () => {
+  it.skip('TC07: Validar formulario con tipo de datos inválidos.', () => {
 
    
 
