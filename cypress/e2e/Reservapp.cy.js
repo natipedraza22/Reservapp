@@ -6,7 +6,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
   
 
 
-  it('TC01: validar que el sistema permita la búsqueda de disponibilidad ingresando datos correctos.', () => {
+  it.only('TC01: validar que el sistema permita la búsqueda de disponibilidad ingresando datos correctos.', () => {
    
     
     cy.get('.btn.btn-primary').click();
@@ -85,7 +85,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
   });
 
 
-  it("TC08: Validar formulario con campos obligatorios vacíos.", () => {
+  it('TC08: Validar formulario con campos obligatorios vacíos.', () => {
     cy.get('.btn.btn-primary').click();
     cy.get('[type="date"]').eq(0).type('2022-02-22');
     cy.get('[type="date"]').eq(1).type('2022-03-22');
@@ -102,7 +102,7 @@ describe('Sistema de Gestión de Hoteles - Automatización de Casos de Prueba', 
   });
 
 
-  it.skip("TC09: Validar formulario con tipo de datos inválidos.", () => {
+  it.skip('TC09: Validar formulario con tipo de datos inválidos.', () => {
 
    
 
