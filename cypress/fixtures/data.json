@@ -1,0 +1,13 @@
+{
+	"urlPrincipal": "pythonanywhere.com",
+	"urlDisponibilidad": "?guest_count",
+	"urlReserva":"bookings/new?start_date=",
+	"fechaEntrada": "2022-01-22",
+	"fechaSalida": "2022-02-22",
+	"fechaEntradaInvalida": "2023-01-22",
+	"fechaSalidaInvalida": "2023-02-22",
+	"msgError": "No se pudo calcular el precio para la reserva. La fecha de salida tiene que ser anterior a 2022-12-31",
+	"tiposHabitaciones":["Individual", "Doble", "Triple", "Cuádruple"],
+	"nombreForm": "José",
+	"email": "jose@gmail.com"
+}
